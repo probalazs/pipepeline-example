@@ -1,4 +1,3 @@
+export type RunPipeline = any;
 
-export type RunPipeline = any
-
-export const runPipeline: RunPipeline = () => {}
+export const runPipeline: RunPipeline = () => {};

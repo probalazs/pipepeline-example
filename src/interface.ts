@@ -1,5 +1,5 @@
-export type Middleware = any;
+export type Context = any;
 
 export type Next = any;
 
-export type Context = any;
+export type Middleware = any;
