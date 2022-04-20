@@ -1,5 +1,5 @@
-export type Context = any;
+export type Context = {[_: string]: any};
 
-export type Next = any;
+export type Next = () => void;
 
-export type Middleware = any;
+export type Middleware = (context: Context, next: Next) => void;
