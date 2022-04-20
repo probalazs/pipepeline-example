@@ -1,3 +1,15 @@
-export type RunPipeline = any;
+import { Command, Context, Middleware } from '../interface';
 
-export const runPipeline: RunPipeline = () => {};
+export type RunPipeline = (
+  context: Context,
+  middlewares: Array<Middleware>,
+  command: Command,
+) => void;
+
+export const runPipeline: RunPipeline = (
+  context,
+  _middlewares,
+  command,
+) => {
+    command(context);
+};

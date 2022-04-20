@@ -1,5 +1,14 @@
+import { Middleware } from "../interface";
+import { runPipeline } from "./run-pipeline"
+
 describe('Run Pipeline', () => {
-  it('should be true', () => {
-    expect(true).toBe(true);
-  });
-});
+  it('should call the command', () => {
+    const context = {data: "adat"};
+    const middlewares = [] as Middleware[];
+    const command = jest.fn();
+
+    runPipeline(context, middlewares, command);
+
+    expect(command).toHaveBeenCalledWith(context);
+  })
+})
