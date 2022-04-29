@@ -8,8 +8,11 @@ export type RunPipeline = (
 
 export const runPipeline: RunPipeline = (
   context,
-  _middlewares,
+  middlewares,
   command,
 ) => {
     command(context);
+    if (middlewares.length > 0){
+        middlewares[0]!(context, () => {});
+    }
 };
