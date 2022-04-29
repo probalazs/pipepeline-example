@@ -6,12 +6,8 @@ export type RunPipeline = (
   command: Command,
 ) => void;
 
-export const runPipeline: RunPipeline = (
-  context,
-  middlewares,
-  command,
-) => {
-  if (middlewares.length === 0){
+export const runPipeline: RunPipeline = (context, middlewares, command) => {
+  if (middlewares.length === 0) {
     command(context);
     return;
   }
