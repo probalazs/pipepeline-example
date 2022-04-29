@@ -11,8 +11,10 @@ export const runPipeline: RunPipeline = (
   middlewares,
   command,
 ) => {
-  command(context);
-  if (middlewares.length > 0){
-    middlewares[0]!(context, () => {});
+  if (middlewares.length === 0){
+    command(context);
+    return;
   }
+  const [middleware, ...rest_middlewares] = middlewares;
+  middleware!(context, () => runPipeline(context, rest_middlewares, command));
 };
