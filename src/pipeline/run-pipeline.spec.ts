@@ -60,4 +60,25 @@ describe('Run Pipeline', () => {
 
     expect(command_ctx).toEqual({ data: 'adat', new_data: 'new_data' , other_data: 'other_data'});
   });
+
+  it('should call 2 middlewares in correct order', () => {
+    let command_ctx;
+    const context = { data: 'adat', order_data: [] };
+    const middleware: Middleware = (context, next) => {
+      context['order_data'].push(1);
+      next()
+    };
+    const middleware2: Middleware = (context, next) => {
+      context['order_data'].push(2);
+      next()
+    };
+    const middlewares = [middleware, middleware2] as Middleware[];
+    const command = (ctx: Context) => {
+      command_ctx = { ...ctx };
+    };
+
+    runPipeline(context, middlewares, command);
+
+    expect(command_ctx).toEqual({ data: 'adat', order_data: [1, 2]});
+  });
 });
