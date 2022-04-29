@@ -11,8 +11,8 @@ export const runPipeline: RunPipeline = (
   middlewares,
   command,
 ) => {
-    command(context);
-    if (middlewares.length > 0){
-        middlewares[0]!(context, () => {});
-    }
+  command(context);
+  if (middlewares.length > 0){
+    middlewares[0]!(context, () => {});
+  }
 };
